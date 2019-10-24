@@ -89,9 +89,14 @@
 //! }
 //! ```
 
+// XXX this is broken with ale
+// #![warn(clippy::cargo)]
 #![warn(clippy::pedantic)]
 #![warn(clippy::nursery)]
+#![allow(clippy::multiple_crate_versions)]
 #![allow(clippy::type_complexity)]
+
+const _DUMMY_DEPENDENCY: &str = include_str!("../Cargo.toml");
 
 /// Return type of a component of a future or stream, indicating whether a
 /// value is ready, or if not, what actions were taken.

@@ -4,6 +4,13 @@ version = "0.1.0"
 authors = ["Jesse Luehrs <doy@tozt.net>"]
 edition = "2018"
 
+description = "implements the inner future protocol documented in the tokio docs"
+license = "MIT"
+repository = "https://git.tozt.net/component-future"
+readme = "README.md"
+keywords = ["futures"]
+categories = ["asynchronous", "rust-patterns"]
+
 [dependencies]
 futures = "0.1"
 
