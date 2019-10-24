@@ -2,6 +2,7 @@
 #![warn(clippy::nursery)]
 #![allow(clippy::type_complexity)]
 
+#[derive(Copy, Clone, Debug, PartialEq, Eq)]
 pub enum Async<Item> {
     // we have a value for the main loop to return immediately.
     Ready(Item),
