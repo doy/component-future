@@ -188,11 +188,9 @@ macro_rules! try_ready {
 ///     }
 /// }
 /// ```
-pub fn poll_future<T, Item, Error>(
+pub fn poll_future<'a, T, Item, Error>(
     future: &mut T,
-    poll_fns: &'static [&'static dyn for<'a> Fn(
-        &'a mut T,
-    ) -> Poll<Item, Error>],
+    poll_fns: &'a [&'a dyn for<'b> Fn(&'b mut T) -> Poll<Item, Error>],
 ) -> futures::Poll<Item, Error>
 where
     T: futures::future::Future<Item = Item, Error = Error>,
@@ -250,14 +248,11 @@ where
 ///     }
 /// }
 /// ```
-pub fn poll_stream<T, Item, Error>(
+pub fn poll_stream<'a, T, Item, Error>(
     stream: &mut T,
-    poll_fns: &'static [&'static dyn for<'a> Fn(
-        &'a mut T,
-    ) -> Poll<
-        Option<Item>,
-        Error,
-    >],
+    poll_fns: &'a [&'a dyn for<'b> Fn(
+        &'b mut T,
+    ) -> Poll<Option<Item>, Error>],
 ) -> futures::Poll<Option<Item>, Error>
 where
     T: futures::stream::Stream<Item = Item, Error = Error>,
